@@ -1,37 +1,39 @@
-# Setup Guide (Share With Friends)
+# Setup Guide
 
-This guide gets the project running in a few minutes.
+This guide helps a new user run `job-scraper` quickly and safely.
 
-## 1) Prerequisites
+## Prerequisites
 
 - Docker Desktop installed and running
-- A Serper API key ([serper.dev](https://serper.dev))
+- A Serper API key from [serper.dev](https://serper.dev)
 
-## 2) Clone and configure
+## 1) Clone and initialize
 
 ```bash
-git clone <your-repo-url>
-cd agent-for-job
+git clone <repo-url>
+cd <repo-folder>
 cp .env.example .env
 ```
 
-Edit `.env` and set at least:
+## 2) Configure `.env`
+
+Set at least the following values:
 
 - `SERPER_API_KEY=<your-key>`
 - `RUN_MODE=all_companies`
-- `ROLE_QUERY=Software Engineer` (or your role)
-- `TIME_WINDOWS=1hour,4hours,8hours,12hours,24hours` (or a single `TIME_WINDOW`)
+- `ROLE_QUERY=Software Engineer` (or your target role)
+- `TIME_WINDOWS=1hour,4hours,8hours,12hours,24hours` (or use a single `TIME_WINDOW`)
 - `GLOBAL_BOARD_SOURCES=Greenhouse,Lever,Ashby,Workday,SmartRecruiters,iCIMS,Dover,Oracle Cloud`
 - `SOURCE_INCLUDE=Ashby,Greenhouse,Lever,Workday,SmartRecruiters,iCIMS,Dover,Oracle Cloud`
 
-## 3) Run once (test)
+## 3) Verify with a one-off run
 
 ```bash
 make first-run
 make view-sheet
 ```
 
-You should see CSV output at:
+Expected output file:
 
 - `data/jobs_sheet.csv`
 
@@ -42,21 +44,23 @@ make up
 make logs
 ```
 
-Stop:
+Stop services:
 
 ```bash
 make down
 ```
 
-## 5) Interactive manual mode
+## 5) Interactive run (optional)
 
-Use prompts to choose role and single/all time windows:
+For ad-hoc role/time selection from terminal:
 
 ```bash
 make manual-run
 ```
 
-## Notes
+Note: `manual-run` temporarily overrides role/time settings for that run only.
 
-- Do not commit `.env` (it contains keys).
-- `.gitignore` already excludes secrets and generated data files.
+## Security Notes
+
+- Never commit `.env` (contains API keys).
+- `.gitignore` excludes secrets and runtime artifacts by default.
