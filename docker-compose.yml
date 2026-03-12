@@ -1,0 +1,10 @@
+services:
+  brians-job-watcher:
+    build: .
+    container_name: brians-job-watcher
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      - ./data:/data
+    restart: unless-stopped

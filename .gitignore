@@ -1,0 +1,14 @@
+.env
+.env.local
+.DS_Store
+
+# Runtime artifacts
+data/jobs.db
+data/jobs_sheet.csv
+data/last_page.html
+data/google-service-account.json
+
+# Python cache
+__pycache__/
+*.pyc
+
